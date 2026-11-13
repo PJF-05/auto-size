@@ -2,7 +2,7 @@
   <div class="dashboard">
     <div v-for="(item, index) in chartList" :key="index" class="box">
       <div class="header">
-        <span class="title">{{ item.title }}</span>
+        <span class="title" :style="{fontSize: $px2rem('15px')}">{{ item.title }}</span>
         <span class="badge">m³</span>
       </div>
       <div class="content">
@@ -158,7 +158,6 @@ const chartList = ref<any>([
 }
 
 .header .title {
-  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.3px;
   color: #fff;
@@ -169,9 +168,9 @@ const chartList = ref<any>([
 
 .header .title::before {
   content: "";
-  display: inline-block;
   width: 4px;
   height: 16px;
+  display: inline-block;
   background: #4ade80;
   border-radius: 4px;
 }
