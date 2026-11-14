@@ -69,7 +69,7 @@ const buildOption = (data: AirDataItem[], name: string): EChartsOption => ({
     textStyle: { color: "#fff" },
     triggerOn: "click",
   },
-  legend: { show: false },
+  legend: { top: 0, right: 0 },
   grid: { top: 30, left: "3%", right: "1%", bottom: "3%", containLabel: true },
   xAxis: {
     type: "category",
