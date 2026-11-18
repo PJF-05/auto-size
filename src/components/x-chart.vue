@@ -16,7 +16,7 @@
 import VChart from "vue-echarts";
 import type { EChartsOption } from "echarts";
 import { onMounted, onUnmounted, ref, watch } from "vue";
-import AutoSizeEchart from "@/service/auto-size-echart";
+import AutoSizeEcharts from "@/service/auto-size-echarts";
 
 export interface UpdateOption {
   notMerge?: boolean;
@@ -45,14 +45,14 @@ const props = defineProps({
 const chartsOption = ref<EChartsOption>({});
 const chartsUpdateOption = ref<UpdateOption>({});
 const chartRef = ref();
-const autoSizeService = ref<AutoSizeEchart | null>(null);
+const autoSizeService = ref<AutoSizeEcharts | null>(null);
 
 const init = () => {
   const instance = chartRef.value?.chart;
   const dom = chartRef.value?.$el;
 
   if (instance && dom) {
-    autoSizeService.value = new AutoSizeEchart({
+    autoSizeService.value = new AutoSizeEcharts({
       options: props.option,
       mode: props.updateOption,
       chartInstance: instance,

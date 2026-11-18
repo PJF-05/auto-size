@@ -21,7 +21,7 @@ export interface ServiceOption {
   dom: HTMLElement;
 }
 
-class AutoSizeEchart {
+class AutoSizeEcharts {
   private _options: EChartsOption;
   private _mode: Mode;
   private _chartInstance: any;
@@ -109,11 +109,67 @@ class AutoSizeEchart {
    */
   private mergeCurOption() {
     const curOption: EChartsOption = {
+      xAxis: {
+        nameGap: 15,
+        axisLine: {
+          lineStyle: {
+            width: 1,
+          },
+        },
+        axisTick: {
+          length: 5,
+          lineStyle: {
+            width: 1,
+          },
+        },
+        minorTick: {
+          length: 5,
+          lineStyle: {
+            width: 1,
+          },
+        },
+        axisLabel: {
+          margin: 8,
+        },
+        splitLine: {
+          lineStyle: {
+            width: 1,
+          },
+        },
+      },
+      yAxis: {
+        nameGap: 15,
+        axisLine: {
+          lineStyle: {
+            width: 1,
+          },
+        },
+        axisTick: {
+          length: 5,
+          lineStyle: {
+            width: 1,
+          },
+        },
+        minorTick: {
+          length: 5,
+          lineStyle: {
+            width: 1,
+          },
+        },
+        axisLabel: {
+          margin: 8,
+        },
+        splitLine: {
+          lineStyle: {
+            width: 1,
+          },
+        },
+      },
       legend: {
         itemWidth: 25,
         itemHeight: 14,
         itemGap: 10,
-        padding: 5,
+        padding: 5
       },
       tooltip: {
         className: "auto-size-tooltip",
@@ -166,11 +222,23 @@ class AutoSizeEchart {
           },
         },
       },
+      radar: {
+        splitLine: {
+          lineStyle: {
+            width: 1,
+          },
+        },
+        axisLine: {
+          lineStyle: {
+            width: 1,
+          },
+        },
+      },
     };
 
     // 如果option(用户配置)没有配置项就不显示的如：tooltip，从curOption移除,不进行合并,或者用户配置项配置如:show: false
     // noOptionKeyNoShows 没有配置项就不显示的配置项列表
-    const noOptionKeyNoShows = ["tooltip"];
+    const noOptionKeyNoShows = ["tooltip", "xAxis", "yAxis", "radar"];
     noOptionKeyNoShows.forEach((key) => {
       if (
         !this._options ||
@@ -251,15 +319,33 @@ class AutoSizeEchart {
       "top",
       "bottom",
       "margin",
-      "padding",
       "lineHeight",
+      "axisNameGap",
+      "nameGap",
+      "nameRotate",
+      "maxWidth",
+      "length",
     ];
+
+    // [10,20]情况
+    const changeArrayKeys = ["padding"];
 
     // 性能优化：跳过数据体，防止遍历上万条数据
     const skipList = ["data", "dataset", "nodes", "links", "edges"];
 
     for (let i in s) {
       if (skipList.includes(i)) continue; // 跳过数据字段
+
+      if (changeArrayKeys.includes(i)) {
+        if (Array.isArray(s[i])) {
+          s[i] = s[i].map((v) =>
+            v && typeof v === "object" ? v : pxToHtmlPx(v),
+          );
+        } else if (s[i] != null) {
+          s[i] = pxToHtmlPx(s[i]);
+        }
+        continue; // 处理完不再往下走
+      }
 
       if (s[i] && typeof s[i] === "object") {
         this.changeFontSize(s[i]);
@@ -395,4 +481,4 @@ class AutoSizeEchart {
   }
 }
 
-export default AutoSizeEchart;
+export default AutoSizeEcharts;
