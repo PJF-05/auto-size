@@ -1,1 +1,1 @@
-页面大部分使用postcss-pxtorem、amfe-flexible，echarts 使用自创服务auto-size-echart自适应当前屏幕页面尺寸，调整图全部内容(如:"fontSize", "itemWidth","itemHeight", "symbolSize","width",....),实现覆盖整个页面自适应
+页面大部分使用postcss-pxtorem、amfe-flexible，echarts 使用自创服务auto-size-echarts自适应当前屏幕页面尺寸，调整图全部内容(如:"fontSize", "itemWidth","itemHeight", "symbolSize","width",....),实现覆盖整个页面自适应
