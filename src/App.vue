@@ -60,7 +60,6 @@ const baseData: AirDataItem[] = [
 const createData = (offset: number): AirDataItem[] =>
   baseData.map((d) => ({ ts: d.ts, value: d.value + offset }));
 
-// ✅ 组装完整 EChartsOption（x-chart 的 option prop 要求完整配置）
 const buildOption = (data: AirDataItem[], name: string): EChartsOption => ({
   backgroundColor: "transparent",
   tooltip: {
@@ -115,7 +114,6 @@ const chartList = ref<any>([
 </script>
 
 <style lang="less" scoped>
-/* 只重置本组件内部，全局 html/body/#app 样式请放全局 css */
 .dashboard {
   display: flex;
   flex-wrap: wrap;
@@ -126,13 +124,11 @@ const chartList = ref<any>([
   background: #0b0f17;
   box-sizing: border-box;
 }
-
-/* ✅ 关键：每个盒子宽度 = (100% - 2×gap)/3，高度 = (100% - 1×gap)/2
-   这样 3 个一行、2 行刚好铺满，不依赖 flex-grow 拉伸 */
+  
 .box {
-  flex: 0 0 calc((100% - 24px) / 3);   /* 2 个 gap = 24px */
-  height: calc((100% - 12px) / 2);     /* 1 个 gap = 12px */
-  min-width: 0;                        /* 防止内容撑破 */
+  flex: 0 0 calc((100% - 24px) / 3); 
+  height: calc((100% - 12px) / 2); 
+  min-width: 0;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -184,7 +180,6 @@ const chartList = ref<any>([
   border: 1px solid rgba(74, 222, 128, 0.2);
 }
 
-/* ✅ 内容区撑满 header 之外的高度 */
 .content {
   flex: 1;
   min-height: 0;
