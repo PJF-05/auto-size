@@ -325,6 +325,7 @@ class AutoSizeEcharts {
       "nameRotate",
       "maxWidth",
       "length",
+      "distance"
     ];
 
     // [10,20]情况
